@@ -1,0 +1,10 @@
+Hello {{user.username}}
+Welcome to Myner Blog.
+
+We have just seen you have signed up for our application and want to welcome you to the family. Please feel free to post any post, comment and delete any blog you create.
+
+We hope you will have a good experience. Remember, It is better said than done(and vice versa).
+
+Regards,
+
+Robert Maina.
