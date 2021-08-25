@@ -12,9 +12,14 @@ def index():
     posts = Blog.query.all()
     Sports = Blog.query.filter_by(category = 'Sports').all()
     Health = Blog.query.filter_by(category = 'Health').all()
+    Maths = Blog.query.filter_by(category = 'Mathematics').all()
+    Movie = Blog.query.filter_by(category = 'Movie').all()
+    Car = Blog.query.filter_by(category = 'Car').all()
+    Music = Blog.query.filter_by(category = 'Music').all()
+    random = Blog.query.filter_by(category = 'random').all()
 
     title= 'Welcome to Myner Blog'
-    return render_template('index.html', title = title, blog=posts, Sports=Sports, Health= Health)
+    return render_template('index.html', title = title, blog=posts, Sports=Sports, Health= Health, Maths= Maths, Movie=Movie, Car=Car, Music=Music, random=random)
 
 @main.route('/about')
 def about():
