@@ -1,4 +1,67 @@
 {% extends 'base.html'%}
+{% import 'macros.html' as macro %}
 {% block content %}
+
+<a href="{{url_for('main.new_post',name = current_user.username)}}"><button>Post</button></a>
+
+   <!-- post categories -->
+
+   <div>
+       <ul class="nav nav-tabs">
+
+            <li class="nav-item">
+                <a class="nav-link active category-tab" data-toggle="tab" href="#general">All Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-tab" data-toggle="tab" href="#health">Health</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-tab" data-toggle="tab" href="#car">Cars</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-tab" data-toggle="tab" href="#sports">Sports</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-tab" data-toggle="tab" href="#maths">Mathematics</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-tab" data-toggle="tab" href="#random">Random</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-tab" data-toggle="tab" href="#music">Music</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link category-tab" data-toggle="tab" href="#movie">Movie</a>
+            </li>
+
+       </ul>
+  </div>
+
+  <div class="tab-content">
+    <div  class="container tab-pane active" id="general"><br>
+        {{ macro.display(blog) }}
+    </div>
+    <div  class="container tab-pane fade" id="movie"><br>
+        {{ macro.display(Movie)}}
+    </div>
+    <div  class="container tab-pane fade" id="sports"><br>
+        {{ macro.display(Sports) }}
+    </div>
+    <div  class="container tab-pane fade" id="maths"><br>
+        {{ macro.display(Mathematics) }}
+    </div>
+    <div  class="container tab-pane fade" id="health"><br>
+        {{ macro.display(Health) }}
+    </div>
+    <div  class="container tab-pane fade" id="car"><br>
+        {{ macro.display(Car) }}
+    </div>
+    <div  class="container tab-pane fade" id="music"><br>
+        {{ macro.display(Music) }}
+    </div>
+    <div  class="container tab-pane fade" id="random"><br>
+        {{ macro.display(random) }}
+    </div>
+  </div>
 
 {% endblock %}

@@ -1,0 +1,24 @@
+{% macro display(source) %}
+
+{% if source %}
+{% for category in source %}
+<div class="row container pitch">
+    <div class="col-md-2"> <p class="pitch-author">{{category.user.username}}</p></div>
+    <div class="col-md-10">
+        <h4 class="pitch-title">{{category.title}}</h4>
+        <p class="pitch-post">"{{category.message}}"</p>
+        <em class="pitch-category">{{category.category}} category.</em>
+        
+
+    </div>
+</div>
+
+{% endfor %}
+
+{% else %}
+    <div class="text-center">
+        <p>This category has no posts yet</p>
+    </div>
+{% endif %}
+
+{% endmacro %}

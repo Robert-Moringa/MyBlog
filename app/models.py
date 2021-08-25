@@ -55,9 +55,15 @@ class Blog(db.Model):
     time = db.Column(db.DateTime, default = datetime.utcnow)
     
     
-    def save_pitch(self):
+    def save_blog(self):
         db.session.add(self)
         db.session.commit()
+
+    # display blog
+    @classmethod
+    def get_blog(id):
+        blogs = Blog.query.filter_by(category = id).all()
+        return blogs
 
         
     def __repr__(self):
