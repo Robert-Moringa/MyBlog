@@ -1,20 +1,24 @@
 {% macro display(source) %}
 
+
 {% if source %}
 {% for category in source %}
 <div class="row container pitch">
-    <div class="col-md-2"> <p class="pitch-author">{{category.user.username}}</p></div>
+    <div class="col-md-2">
+        <p class="post-author">{{category.user.username}}</p> 
+        <p class="post-author"> <em> {{category.user.email}} </em></p>
+    </div>
     <div class="col-md-10">
-        <h4 class="pitch-title">{{category.title}}</h4>
+        <h4 class="post-title">{{category.title}}</h4>
         <p class="pitch-post">"{{category.message}}"</p>
         <em class="pitch-category">{{category.category}} category.</em>
 
         <span class="icons" > <a href="{{url_for('main.add_comment',blog_id = category.id)}}"> <i class='far fa-comments' style='font-size:24px'></i> </a>   {{category.comment.count()}}</span>
         <span class="icons" > <a href="{{url_for('main.delete_blogpost',blog_id = category.id)}}"> <i class='fa fa-trash' style='font-size:24px'></i> </a> </span>
         
-
     </div>
 </div>
+<hr>
 
 {% endfor %}
 

@@ -4,7 +4,7 @@ from app.main.forms import Blog_Form, Comment_Form
 from app.models import User, Blog, Comment
 from .. import db
 from . import main
-from app.requests import find_quotes
+from app.request import find_quotes
 from flask_login import login_required, current_user
 
 @main.route('/')
@@ -19,10 +19,12 @@ def index():
     Music = Blog.query.filter_by(category = 'Music').all()
     random = Blog.query.filter_by(category = 'random').all()
 
-    # api = find_quotes()
+    api = find_quotes()
+    quote = api.get('quote')
+    quote_author=api.get('author')
 
     title= 'Welcome to Myner Blog'
-    return render_template('index.html', title = title, blog=posts, Sports=Sports, Health= Health, Maths= Maths, Movie=Movie, Car=Car, Music=Music, random=random)
+    return render_template('index.html', apis= quote , author=quote_author, title = title, blog=posts, Sports=Sports, Health= Health, Maths= Maths, Movie=Movie, Car=Car, Music=Music, random=random)
 
 @main.route('/about')
 def about():

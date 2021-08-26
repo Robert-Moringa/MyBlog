@@ -3,10 +3,13 @@
 {% import 'macros.html' as macro %}
 {% block content %}
 
+<p class="text-center">{{apis}}</p>
+<p class="text-center"> ~ {{author}} </p>
+
 <a href="{{url_for('main.new_post',name = current_user.username)}}"><button>Post</button></a>
 
-
-   <div>
+    <div class="col-md-1"></div>
+   <div class="col-md-10">
        <ul class="nav nav-tabs">
 
             <li class="nav-item">
@@ -35,7 +38,9 @@
             </li>
 
        </ul>
-  </div>
+    </div>
+
+    <div class="col-md-1"></div>
 
   <div class="tab-content">
     <div  class="container tab-pane active" id="general"><br>
