@@ -29,12 +29,10 @@ def about():
     tittle = 'About Myners Blogs'
     return render_template('about.html', tittle = tittle)
 
-@main.route("/post/<int:blog_id>/delete", methods=['POST'])
+@main.route("/post/<int:blog_id>/delete", methods = ['POST','GET'])
 @login_required
 def delete_blogpost(blog_id):
     post = Blog.query.get(blog_id)
-    if post.author != current_user:
-        abort(403)
     post.delete_blogpost()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.index'))
