@@ -30,6 +30,7 @@ def index():
 def about():
     tittle = 'About Myners Blogs'
     return render_template('about.html', tittle = tittle)
+    
 
 @main.route("/post/<int:blog_id>/delete", methods = ['POST','GET'])
 @login_required
