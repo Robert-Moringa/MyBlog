@@ -10,6 +10,7 @@
         <em class="pitch-category">{{category.category}} category.</em>
 
         <span class="icons" > <a href="{{url_for('main.add_comment',blog_id = category.id)}}"> <i class='far fa-comments' style='font-size:24px'></i> </a>   {{category.comment.count()}}</span>
+        <span class="icons" > <a href="{{url_for('main.delete_blogpost',blog_id = category.id)}}"> <i class='fa fa-trash' style='font-size:24px'></i> </a> </span>
         
 
     </div>

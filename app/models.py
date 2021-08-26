@@ -59,6 +59,10 @@ class Blog(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
+
     # display blog
     @classmethod
     def get_blog(id):
@@ -78,6 +82,10 @@ class Comment(db.Model):
 
     def add_coment(self):
         db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
         db.session.commit()
 
     @classmethod

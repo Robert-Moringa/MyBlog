@@ -1,6 +1,6 @@
 import requests
 
-def random_quote():
+def find_quotes():
     response = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
     if response.status_code == 200:
         print(response.json())

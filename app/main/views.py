@@ -1,10 +1,10 @@
 import datetime
-from flask import render_template, redirect, url_for,abort,request
+from flask import render_template, redirect, url_for,abort,request, flash
 from app.main.forms import Blog_Form, Comment_Form
 from app.models import User, Blog, Comment
 from .. import db
 from . import main
-from ..requests import random_quote
+from app.requests import find_quotes
 from flask_login import login_required, current_user
 
 @main.route('/')
@@ -19,15 +19,25 @@ def index():
     Music = Blog.query.filter_by(category = 'Music').all()
     random = Blog.query.filter_by(category = 'random').all()
 
-    api = random_quote()
+    # api = find_quotes()
 
     title= 'Welcome to Myner Blog'
-    return render_template('index.html', quotes = api, title = title, blog=posts, Sports=Sports, Health= Health, Maths= Maths, Movie=Movie, Car=Car, Music=Music, random=random)
+    return render_template('index.html', title = title, blog=posts, Sports=Sports, Health= Health, Maths= Maths, Movie=Movie, Car=Car, Music=Music, random=random)
 
 @main.route('/about')
 def about():
     tittle = 'About Myners Blogs'
     return render_template('about.html', tittle = tittle)
+
+@main.route("/post/<int:blog_id>/delete", methods=['POST'])
+@login_required
+def delete_blogpost(blog_id):
+    post = Blog.query.get(blog_id)
+    if post.author != current_user:
+        abort(403)
+    post.delete_blogpost()
+    flash('Your post has been deleted!', 'success')
+    return redirect(url_for('main.index'))
 
 @main.route('/user/<name>')
 def profile(name):
