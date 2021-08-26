@@ -67,7 +67,7 @@ class Blog(db.Model):
 
         
     def __repr__(self):
-        return f'Blog {self.post}'
+        return f'Blog {self.message}'
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -87,4 +87,4 @@ class Comment(db.Model):
         return comments
 
     def __repr__(self):
-        return f'comment:{self.comment}'
+        return f'Comment:{self.comment}'

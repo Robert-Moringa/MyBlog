@@ -1,10 +1,12 @@
 {% extends 'base.html'%}
+{%from 'macros_quotes.html' import the_quotes%}
 {% import 'macros.html' as macro %}
 {% block content %}
 
+<h1>{{display_quotes(quotes)}}</h1>
+
 <a href="{{url_for('main.new_post',name = current_user.username)}}"><button>Post</button></a>
 
-   <!-- post categories -->
 
    <div>
        <ul class="nav nav-tabs">

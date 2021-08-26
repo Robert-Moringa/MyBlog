@@ -1,9 +1,10 @@
 import datetime
 from flask import render_template, redirect, url_for,abort,request
-from app.main.forms import Blog_Form
+from app.main.forms import Blog_Form, Comment_Form
 from app.models import User, Blog, Comment
 from .. import db
 from . import main
+from ..requests import random_quote
 from flask_login import login_required, current_user
 
 @main.route('/')
@@ -18,12 +19,14 @@ def index():
     Music = Blog.query.filter_by(category = 'Music').all()
     random = Blog.query.filter_by(category = 'random').all()
 
+    api = random_quote()
+
     title= 'Welcome to Myner Blog'
-    return render_template('index.html', title = title, blog=posts, Sports=Sports, Health= Health, Maths= Maths, Movie=Movie, Car=Car, Music=Music, random=random)
+    return render_template('index.html', quotes = api, title = title, blog=posts, Sports=Sports, Health= Health, Maths= Maths, Movie=Movie, Car=Car, Music=Music, random=random)
 
 @main.route('/about')
 def about():
-    tittle = 'About Myners Pitches'
+    tittle = 'About Myners Blogs'
     return render_template('about.html', tittle = tittle)
 
 @main.route('/user/<name>')
@@ -76,3 +79,18 @@ def new_post(name):
         return redirect(url_for('main.post_category',category = category))
 
     return render_template('new-post.html', form=form)
+
+@main.route('/comment/<int:blog_id>', methods = ['POST','GET'])
+@login_required
+def add_comment(blog_id):
+    form = Comment_Form()
+    post = Blog.query.get(blog_id)
+    all_comments = Comment.query.filter_by(blog_id = blog_id).all()
+    if form.validate_on_submit():
+        comment = form.comment.data 
+        blog_id = blog_id
+        user_id = current_user._get_current_object().id
+        new_comment = Comment(comment = comment,user_id = user_id,blog_id = blog_id)
+        new_comment.add_coment()
+        return redirect(url_for('.add_comment', blog_id = blog_id))
+    return render_template('comment_post.html', comment_form =form, post = post, all_comments=all_comments)

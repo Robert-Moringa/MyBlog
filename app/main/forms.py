@@ -10,11 +10,10 @@ class Blog_Form(FlaskForm):
     submit = SubmitField('Share Post')
 
 
-# class CommentForm(FlaskForm):
+class Comment_Form(FlaskForm):
 
-#     title = StringField('Comment Title')
-#     comment = TextAreaField('Post Of The Comment')
-#     submit = SubmitField('Submit')
+    comment = TextAreaField('Post Of The Comment')
+    submit = SubmitField('Submit')
 
 
 # class UpdateProfile(FlaskForm):

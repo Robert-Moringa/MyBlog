@@ -8,6 +8,8 @@
         <h4 class="pitch-title">{{category.title}}</h4>
         <p class="pitch-post">"{{category.message}}"</p>
         <em class="pitch-category">{{category.category}} category.</em>
+
+        <span class="icons" > <a href="{{url_for('main.add_comment',blog_id = category.id)}}"> <i class='far fa-comments' style='font-size:24px'></i> </a>   {{category.comment.count()}}</span>
         
 
     </div>
