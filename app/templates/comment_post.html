@@ -14,6 +14,7 @@
                     
                              <p class="card-title">{{ comment.comment }}</p>
                              <p class="card-text">--- {{comment.user.username}}</p>
+                             <span class="icons" > <a href="{{url_for('main.delete_comment',comment_id = comment.id)}}"> <i class='fa fa-trash' style='font-size:24px'></i> </a> </span>
                            </div>
                        </div>
                     {% endfor %}

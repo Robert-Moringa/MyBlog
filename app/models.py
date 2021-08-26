@@ -84,7 +84,7 @@ class Comment(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def delete(self):
+    def delete_comment(self):
         db.session.delete(self)
         db.session.commit()
 

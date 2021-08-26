@@ -37,6 +37,14 @@ def delete_blogpost(blog_id):
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.index'))
 
+@main.route("/comment/<int:comment_id>/delete", methods = ['POST','GET'])
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    comment.delete_comment()
+    flash('Comment deleted!', 'success')
+    return redirect(url_for('main.index'))
+
 @main.route('/user/<name>')
 def profile(name):
     user = User.query.filter_by(username = name).first()
